@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagerbestand</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    
+</head>
+<body>
+    <header>Lagerbestand</header>
+    <select id="main_selection" onchange="window.location.href = this.value;">
+        <option value="">Bitte wählen…</option>
+        <option value="add.html">Add</option>
+        <option value="select.html">Select</option>
+        <option value="order.html">Order</option>
+    </select>
+
+
+
+    <div class="container">
+       <table class="stoktable">
+            <thead>
+                <th width="30%">Type</th>
+                <th> Value</th> 
+                <th width="30%">Name</th> 
+                <th>Form Factor</th> 
+               <th>Pieces</th>
+            </thead>
+            <tbody id="data-output">
+
+            </tbody>
+
+       </table>
+    </div>
+
+    <script src="datacontroller.js"></script>
+</body>
+</html>
