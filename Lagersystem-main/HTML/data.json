@@ -1,0 +1,27 @@
+[
+    {
+        "Type": "Resistor",
+        "Value": "1k",
+        "Name": "MFR-25FTF52-600R",
+        "Design": "DHT",
+        "Pieces": 20
+
+    },
+    {
+        "Type": "Resistor",
+        "Value": "5k",
+        "Name": "MFR-25FTF52-600R",
+        "Design": "SMD",
+        "Pieces": 10
+    },
+    {
+        "Type": "Diode",
+        "Value": "-",
+        "Name": "1N047B",
+        "Design": "SMD",
+        "Pieces": 60
+    }
+
+
+
+]
