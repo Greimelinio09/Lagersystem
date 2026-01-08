@@ -1,0 +1,16 @@
+[
+  {
+    "Type": "Resistor",
+    "Value": "1k",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "55"
+  },
+  {
+    "Type": "Kondensator",
+    "Value": "22uF",
+    "Name": "Elko",
+    "Design": "THT",
+    "Pieces": "3"
+  }
+]
