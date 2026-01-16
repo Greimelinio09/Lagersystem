@@ -1,20 +1,92 @@
 [
   {
     "Type": "Resistor",
-    "Value": "2k",
+    "Value": "10k",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": "30",
+    "Pieces": "60",
     "shelf": "1",
-    "box": "10"
+    "box": "30"
+  },
+  {
+    "Type": "Capacitor",
+    "Value": "470uF",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "10",
+    "shelf": "5",
+    "box": "5"
   },
   {
     "Type": "Diode",
-    "Value": "-",
-    "Name": "1N4708",
+    "Value": "1N4007",
+    "Name": "-",
     "Design": "THT",
-    "Pieces": "22",
+    "Pieces": "50",
     "shelf": "2",
+    "box": "20"
+  },
+  {
+    "Type": "LED",
+    "Value": "Blue",
+    "Name": "-",
+    "Design": "SMD",
+    "Pieces": "200",
+    "shelf": "3",
+    "box": "100"
+  },
+  {
+    "Type": "Transistor",
+    "Value": "BC547",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "40",
+    "shelf": "4",
+    "box": "15"
+  },
+  {
+    "Type": "Voltage Regulator",
+    "Value": "7805",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "30",
+    "shelf": "6",
+    "box": "10"
+  },
+  {
+    "Type": "Switch",
+    "Value": "SPDT",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "20",
+    "shelf": "3",
+    "box": "10"
+  },
+  {
+    "Type": "Connector",
+    "Value": "2-pin",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "100",
+    "shelf": "7",
+    "box": "50"
+  },
+  {
+    "Type": "Potentiometer",
+    "Value": "10k",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "15",
+    "shelf": "4",
+    "box": "5"
+  },
+  {
+    "Type": "Relay",
+    "Value": "5V",
+    "Name": "-",
+    "Design": "THT",
+    "Pieces": "12",
+    "shelf": "6",
     "box": "5"
   }
 ]
