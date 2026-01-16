@@ -22,6 +22,8 @@ fetch("data.json")
                 <td>${product.Name}</td>
                 <td>${product.Design}</td>
                 <td>${product.Pieces}</td>
+                <td>${product.shelf} </td>
+                <td>${product.box} </td>
                 <td><button onclick="deleteItem(${i})">Delete</button><td>
                 
             </tr>

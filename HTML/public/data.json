@@ -1,16 +1,11 @@
 [
   {
     "Type": "Resistor",
-    "Value": "1k",
+    "Value": "2k",
     "Name": "-",
-    "Design": "THT",
-    "Pieces": "55"
-  },
-  {
-    "Type": "Kondensator",
-    "Value": "22uF",
-    "Name": "Elko",
-    "Design": "THT",
-    "Pieces": "3"
+    "Design": "SMD",
+    "Pieces": "50",
+    "shelf": "2",
+    "box": "10"
   }
 ]

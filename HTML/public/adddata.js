@@ -16,6 +16,8 @@ let Value;
 let Name;
 let Design;
 let Pieces;
+let shelf;
+let box;
 
 document.getElementById("submit").onclick = function(){
 
@@ -24,6 +26,9 @@ document.getElementById("submit").onclick = function(){
     Name = document.getElementById("name").value;    
     Design = document.getElementById("design").value; 
     Pieces = document.getElementById("pieces").value;
+    shelf = document.getElementById("shelf").value;
+    box = document.getElementById("box").value;
+
 
     const item = {
 
@@ -31,7 +36,10 @@ document.getElementById("submit").onclick = function(){
         "Value": Value,
         "Name": Name,
         "Design": Design,
-        "Pieces": Pieces
+        "Pieces": Pieces,
+        "shelf": shelf,
+        "box": box
+
     };
 
     
@@ -51,8 +59,9 @@ function clearFields(){
     document.getElementById("name").value = '';
     document.getElementById("design").value = '';
     document.getElementById("pieces").value = '';
-
-
+    document.getElementById("shelf").value = '';
+    document.getElementById("box").value = '';
+    
 }
 
 function sendjson(){
