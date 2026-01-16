@@ -11,7 +11,6 @@ let item1 = [];
         console.error(error);
     });
 
-
 let Type;
 let Value;
 let Name;
