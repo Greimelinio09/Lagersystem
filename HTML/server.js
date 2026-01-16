@@ -22,8 +22,18 @@ app.post("/api/delete", (req, res) => {
 
     res.json({success: true});
 
+});
 
+app.post("/api/update", (req, res) => {
+    const value = req.body.value;
+    const name = req.body.name;
+    const index = req.body.index;
 
+    let data = JSON.parse(fs.readFileSync("public/data.json", "utf8"));
+    data[index][name] = value;
+    fs.writeFileSync("public/data.json", JSON.stringify(data, null, 2), "utf-8");
+    
+    res.json({success: true});
 });
 
 app.listen(3000, () => {console.log("Server running on port 3000")});

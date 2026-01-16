@@ -7,7 +7,7 @@ fetch("data.json")
 
 
 
-    
+  
 
     for(let i = 0; i < products.length; i++)
     {
@@ -21,10 +21,10 @@ fetch("data.json")
                 <td>${product.Value}</td>
                 <td>${product.Name}</td>
                 <td>${product.Design}</td>
-                <td>${product.Pieces}</td>
-                <td>${product.shelf} </td>
-                <td>${product.box} </td>
-                <td><button onclick="deleteItem(${i})">Delete</button><td>
+                <td><input type="number" value="${product.Pieces}" oninput="updatejsonvalue(this.value, 'Pieces',${i})"></td>
+                <td><input type="number" value="${product.shelf}" oninput="updatejsonvalue(this.value, 'shelf',${i})"></td>
+                <td><input type="number" value="${product.box}" oninput="updatejsonvalue(this.value, 'box',${i})"></td>
+                <td><button onclick="deleteItem(${i})">Delete</button></td>
                 
             </tr>
 
@@ -32,7 +32,7 @@ fetch("data.json")
 
 
     }
-
+    
     document.getElementById("data-output").innerHTML = out;
     });
 
@@ -46,9 +46,17 @@ function deleteItem(index){
         body: JSON.stringify({index})
     })
     .then(() => location.reload());
+}
+
+function updatejsonvalue(value, name, index){
+    console.log("Fetch läuft");
+    fetch("/api/update", {
+        method: "POST",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify({value, name, index})
+    })
+    .then(() => console.log("Updated"));
 
 
 
 }
-
-
