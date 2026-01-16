@@ -195,6 +195,7 @@ table {
 }
 
 ::placeholder {
+    text-align: center;
     color: white;
 }
 
@@ -292,4 +293,18 @@ button:hover {
     .col-850 {
         flex-direction: column;
     }
+}
+
+.header-image {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    top: 1px;
+    right: 16px;
+}
+
+.subheading {
+    display: block;
+    margin-left: 16px;
+    font-weight: 400;
 }

@@ -7,5 +7,14 @@
     "Pieces": "30",
     "shelf": "1",
     "box": "10"
+  },
+  {
+    "Type": "Diode",
+    "Value": "-",
+    "Name": "1N4708",
+    "Design": "THT",
+    "Pieces": "22",
+    "shelf": "2",
+    "box": "5"
   }
 ]
