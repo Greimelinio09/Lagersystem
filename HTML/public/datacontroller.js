@@ -192,3 +192,49 @@ function deleteOrderItem(index) {
     // Tabelle aktualisieren
     writeOrderTable();
 }
+
+function ordercomponents() {
+    // Hole orderList aus localStorage
+    const savedOrderList = localStorage.getItem("orderList");
+    const orderList = savedOrderList ? JSON.parse(savedOrderList) : [];
+    
+    if(orderList.length === 0) {
+        alert("Keine Artikel in der Bestellung!");
+        return;
+    }
+    
+    // Füge zur globalen submittedOrders Liste hinzu
+    submittedOrders.push({
+        timestamp: new Date().toLocaleString(),
+        items: orderList
+    });
+    
+    // Zeige die georderten Komponenten in der Console
+    console.log("=== SUBMIT ORDER ===");
+    console.log("Georderte Komponenten:", orderList);
+    console.log("Anzahl der Positionen:", orderList.length);
+    console.log("Alle eingegangenen Bestellungen:", submittedOrders);
+    console.log("====================");
+    
+    // Sende die Bestellung zum Server um data.json zu aktualisieren
+    fetch('/api/submit-order', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(orderList)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Bestellung erfolgreich eingereicht:", data);
+        alert("Bestellung erfolgreich eingereicht!");
+        
+        // Leere orderList in localStorage
+        localStorage.removeItem("orderList");
+        
+        // Leere die Tabelle
+        writeOrderTable();
+    })
+    .catch(error => {
+        console.error("Fehler beim Einreichen der Bestellung:", error);
+        alert("Fehler beim Einreichen der Bestellung!");
+    });
+}

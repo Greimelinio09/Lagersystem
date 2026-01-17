@@ -323,3 +323,9 @@ button:hover {
 #searchbar::placeholder {
     text-align: left;
 }
+
+#submitorder {
+    position: absolute;
+    top: 16px;
+    right: 100px;
+}

@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
     <link rel="stylesheet" href="stylesheet.css">
-    
+    <script src="systemcontroller.js"></script>
 </head>
 <body>
     <header>Order</header>
+    <input type="button" onclick="ordercomponents()" id="submitorder" value="Submit Order">
     <select id="main_selection" onchange="window.location.href = this.value;">
         <option value="">Please choose…</option>
         <option value="add.html">Add</option>

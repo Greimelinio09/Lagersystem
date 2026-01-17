@@ -36,4 +36,36 @@ app.post("/api/update", (req, res) => {
     res.json({success: true});
 });
 
+app.post("/api/submit-order", (req, res) => {
+    try {
+        const orderList = req.body;  // Array von bestellten Artikeln
+        
+        // Lese aktuelle data.json
+        let data = JSON.parse(fs.readFileSync("public/data.json", "utf8"));
+        
+        // Für jeden bestellten Artikel die Menge reduzieren
+        orderList.forEach(orderItem => {
+            const productName = orderItem.product.Name;
+            const orderedQuantity = parseInt(orderItem.quantity);
+            
+            // Finde das Produkt in der data.json
+            const productIndex = data.findIndex(item => item.Name === productName);
+            
+            if(productIndex !== -1) {
+                // Reduziere die Pieces um die bestellte Menge
+                data[productIndex].Pieces -= orderedQuantity;
+                //console.log(`Produkt "${productName}" reduziert von ${data[productIndex].Pieces + orderedQuantity} auf ${data[productIndex].Pieces}`);
+            }
+        });
+        
+        // Speichere die aktualisierte data.json
+        fs.writeFileSync("public/data.json", JSON.stringify(data, null, 2), "utf-8");
+        
+        res.json({success: true, message: "Bestellung erfolgreich verarbeitet!"});
+    } catch(error) {
+        console.error("Fehler beim Verarbeiten der Bestellung:", error);
+        res.status(500).json({success: false, message: "Fehler beim Verarbeiten der Bestellung"});
+    }
+});
+
 app.listen(3000, () => {console.log("Server running on port 3000")});
