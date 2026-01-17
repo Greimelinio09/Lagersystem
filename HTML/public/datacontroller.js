@@ -56,7 +56,35 @@ function updatejsonvalue(value, name, index){
         body: JSON.stringify({value, name, index})
     })
     .then(() => console.log("Updated"));
+}
 
+function searchFunction() {
+    const input = document.getElementById("searchbar");
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById("data-output");
+    const tr = table.getElementsByTagName("tr");
+
+    for (let i = 0; i < tr.length; i++) {
+        let tdArray = tr[i].getElementsByTagName("td");
+        let found = false;
+
+        for (let j = 0; j < tdArray.length; j++) {
+            let td = tdArray[j];
+            if (td) {
+                let txtValue = td.textContent || td.innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }   
 
 
 }

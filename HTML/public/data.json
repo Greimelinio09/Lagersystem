@@ -63,15 +63,6 @@
     "box": "10"
   },
   {
-    "Type": "Connector",
-    "Value": "2-pin",
-    "Name": "-",
-    "Design": "THT",
-    "Pieces": "100",
-    "shelf": "7",
-    "box": "50"
-  },
-  {
     "Type": "Potentiometer",
     "Value": "10k",
     "Name": "-",
