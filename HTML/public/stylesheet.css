@@ -126,7 +126,7 @@ input {
 }
 
 input:hover {
-    border: 1px slid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .mb-16 {
@@ -310,12 +310,16 @@ button:hover {
 }
 
 #searchbar {
-    
+    padding: 12px;
     margin-left: 50%;
     width: 300px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 4px;
     background-color: #1a2336;
-    color: white;
     font-size: 16px;
+    
+}
+
+#searchbar::placeholder {
+    text-align: left;
 }

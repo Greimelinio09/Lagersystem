@@ -9,23 +9,33 @@
 </head>
 <body>
     <header>Lagerbestand</header>
+    <a href="order.html"><image src="/images/shoppingcard_nobackground.png" alt="Einkaufswagen" class="header-image"></a>
     <select id="main_selection" onchange="window.location.href = this.value;">
         <option value="">Please choose…</option>
         <option value="add.html">Add</option>
         <option value="index.html">Inventory</option>
     </select>
+    <input type="search" placeholder="Search" id="searchbar" onkeyup="searchFunction()">
 
-    <h1 id="myH1">Username</h1>
+
+
     <div class="container">
-        <label>username</label><br>
-        <input id="myText"><br><br>
-        <button id="mySubmit">submit</button>
+       <table class="stoktable">
+            <thead>
+                <th width="20%">Type</th>
+                <th> Value</th> 
+                <th width="30%">Name</th> 
+                <th>Form Factor</th>
+                <th>Quantity</th> 
+            </thead>
+            <tbody id="data-output">
+
+            </tbody>
+
+       </table>
     </div>
 
-
+    <script src="datacontroller.js"></script>
+    <script src="adddata.js"></script>
 </body>
-
-<script src="adddata.js"></script>
-
-
 </html>
