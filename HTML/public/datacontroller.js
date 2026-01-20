@@ -1,24 +1,22 @@
 let wholejson = [];
-
-    fetch("data.json")
-    .then(res => res.json())
-    .then(products => {
-    wholejson = products; // Hier setzen
-    let out = "";
-    const currentPage = window.location.pathname.split("/").pop();
-
-    // Der restliche Code bleibt gleich
-});
-
 let orderList = [];
 
-document.addEventListener("DOMContentLoaded" , () => {
-const currentPage = window.location.pathname.split("/").pop();
+// Lade data.json beim Start
+fetch("data.json")
+    .then(res => res.json())
+    .then(products => {
+        wholejson = products;
+        console.log("data.json geladen:", wholejson);
+    })
+    .catch(error => console.error("Fehler beim Laden von data.json:", error));
 
-if(currentPage == "order.html"){
-    writeOrderTable();
-} else {
-    fetch("data.json")
+document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop();
+    
+    if(currentPage == "order.html"){
+        writeOrderTable();
+    } else {
+        fetch("data.json")
     .then(res => res.json())
     .then(products => {
         let out = "";
@@ -132,6 +130,20 @@ function submitSelection(index, ordernumberElement) {
         alert("Bitte geben Sie eine gültige Menge ein!");
         return;
     }
+    
+    // Überprüfe ob wholejson geladen wurde
+    if(!wholejson || wholejson.length === 0) {
+        alert("Daten werden noch geladen, bitte warten...");
+        console.error("wholejson ist leer:", wholejson);
+        return;
+    }
+    
+    if(!wholejson[index]) {
+        alert("Fehler: Produkt nicht gefunden!");
+        console.error("Produkt Index nicht gefunden:", index, "wholejson:", wholejson);
+        return;
+    }
+    
     // Lade orderList aus localStorage
     const savedOrderList = localStorage.getItem("orderList");
     const currentOrderList = savedOrderList ? JSON.parse(savedOrderList) : [];
@@ -142,7 +154,7 @@ function submitSelection(index, ordernumberElement) {
     });
     // Speichere orderList in localStorage für Persistierung
     localStorage.setItem("orderList", JSON.stringify(currentOrderList));
-    console.log(currentOrderList);  // Zeigt die OrderList mit dem neuen Produkt an
+    console.log("Artikel hinzugefügt:", currentOrderList);  // Zeigt die OrderList mit dem neuen Produkt an
     alert("Artikel zur Bestellung hinzugefügt!");
     // Zurücksetzen des Input-Feldes
     ordernumberElement.value = "0";
@@ -222,7 +234,12 @@ function ordercomponents() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(orderList)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server Fehler: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
     .then(data => {
         console.log("Bestellung erfolgreich eingereicht:", data);
         alert("Bestellung erfolgreich eingereicht!");
@@ -235,6 +252,6 @@ function ordercomponents() {
     })
     .catch(error => {
         console.error("Fehler beim Einreichen der Bestellung:", error);
-        alert("Fehler beim Einreichen der Bestellung!");
+        alert("Fehler beim Einreichen der Bestellung: " + error.message);
     });
 }
