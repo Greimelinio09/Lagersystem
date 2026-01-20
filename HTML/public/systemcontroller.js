@@ -12,7 +12,7 @@ if(submittedOrders[0] != '')
     baudRate: 115200});
 
 
-    port.write("Hello from Node.js!\n", (err) => {
+    port.write("Hello from my server!\n", (err) => {
       if (err) {
         return console.log('Error on write: ', err.message);
       }
