@@ -1,18 +1,31 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define LED_PIN 2  // On-board LED pin for ESP32
+#define TOUCH_PIN T0  // Touch pin T0 for ESP32
+
+int threshold = 40;  // Touch threshold value
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  Serial.println("ESP32 Bridge Initialized");
+  pinMode(LED_PIN, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  int touchValue = touchRead(TOUCH_PIN);
+  Serial.print("Touch Value: ");
+  Serial.println(touchValue);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  if (touchValue < threshold) {
+    digitalWrite(LED_PIN, HIGH);  // Turn on LED
+    Serial.println("LED ON");
+  } else {
+    digitalWrite(LED_PIN, LOW);   // Turn off LED
+    Serial.println("LED OFF");
+  }
+
+  delay(500);  // Delay for readability
+
+
+
 }
