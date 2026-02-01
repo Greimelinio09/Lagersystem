@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Upload ESP32_Bridge",
+			"type": "shell",
+			"command": "platformio run",
+			"args": [
+				"--target",
+				"upload"
+			]
+		}
+	]
+}
