@@ -4,7 +4,7 @@
     "Value": "10k",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": 31,
+    "Pieces": 35,
     "shelf": "1",
     "box": "30"
   },
@@ -13,7 +13,7 @@
     "Value": "470uF",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "10",
+    "Pieces": "14",
     "shelf": "5",
     "box": "5"
   },
@@ -74,7 +74,7 @@
   {
     "Type": "Relay",
     "Value": "5V",
-    "Name": "-",.
+    "Name": "-",
     "Design": "THT",
     "Pieces": "12",
     "shelf": "6",

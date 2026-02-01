@@ -1,3 +1,2 @@
-// Globales Array für alle eingegangenen Bestellungen
-let submittedOrders = [];
+window.submittedOrders = window.submittedOrders || [];
 
