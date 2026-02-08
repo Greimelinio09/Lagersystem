@@ -82,6 +82,7 @@ Hardware control and automation will be added step by step.
 - The system is event-driven (no infinite loops)
 - Logic is centralized, hardware remains simple
 - Designed for local network operation
+- All the STL Files will be on Thingiverse or Printables after the project is finished
 
 ---
 
