@@ -6,35 +6,41 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-// Finde verfügbare Serial Ports
-SerialPort.list().then(ports => {
-    const usbPorts = ports.filter(port => port.path.includes('USB'));
-    if (usbPorts.length > 0) {
-        const portPath = usbPorts[0].path;
-        console.log('Verfügbare USB-Ports:', usbPorts.map(p => p.path));
-        console.log('Verwende Port:', portPath);
-        
-        const port = new SerialPort({
-            path: portPath,
-            baudRate: 115200
-        });
-
-        port.on('open', () => {
-            console.log('Serial port opened');
-        });
-
-        port.on('error', (err) => {
-            console.error('Serial port error:', err.message);
-        });
-
-        // Mache port global verfügbar
-        global.serialPort = port;
-    } else {
-        console.warn('Keine USB-Serial-Ports gefunden. ESP32 nicht angeschlossen?');
+const port = new SerialPort({
+    path: '/dev/ttyUSB0', // Passe den Pfad zum seriellen Port an
+    baudRate: 115200
+}, (err) => {
+    if (err) {
+        return console.log('Error opening serial port: ', err.message);
     }
-}).catch(err => {
-    console.error('Fehler beim Auflisten der Serial-Ports:', err);
+    console.log('Serial port opened successfully');
 });
+
+
+port.on('open', () => {
+    console.log('Serial port is open');
+});     
+
+sendMessagetoESP("Hello ESP32!");
+setTimeout(() => { 
+    sendMessagetoESP("Hello again, ESP32!");
+}, 5000);
+
+function sendMessagetoESP(message) {        
+    port.write(message + "\n", (err) => {
+        if (err) {
+            console.error('Error writing to serial port:', err.message);
+        } else {
+            console.log('Message sent to ESP32:', message);
+        }      
+    });
+}    
+
+
+
+
+
+
 
 app.post('/api/save', (req, res)  =>  {
     //console.log(req.body);
@@ -92,19 +98,7 @@ app.post("/api/submit-order", (req, res) => {
         // Speichere die aktualisierte data.json
         fs.writeFileSync("public/data.json", JSON.stringify(data, null, 2), "utf-8");
         
-        // Sende Bestellung über USB an ESP32
-        if (global.serialPort && global.serialPort.isOpen) {
-            const orderData = JSON.stringify(orderList);
-            global.serialPort.write(orderData + '\n', (err) => {
-                if (err) {
-                    console.error('Error writing to serial port:', err.message);
-                } else {
-                    console.log('Bestellung an ESP32 gesendet:', orderData);
-                }
-            });
-        } else {
-            console.warn('Serial port is not open or not available, cannot send order to ESP32');
-        }
+        
         
         res.json({success: true, message: "Bestellung erfolgreich verarbeitet!"});
     } catch(error) {
