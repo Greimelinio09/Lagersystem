@@ -9,6 +9,16 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(LED_PIN, !digitalRead(LED_PIN));
-  delay(1000);
+  if(Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    if(input == "OFF")
+      {
+        digitalWrite(LED_PIN, LOW);
+      }
+    else if(input == "ON")
+      {
+        digitalWrite(LED_PIN, HIGH);
+      }
+  }
+    
 }

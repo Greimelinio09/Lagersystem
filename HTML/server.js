@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const port = new SerialPort({
-    path: '/dev/ttyUSB0', // Passe den Pfad zum seriellen Port an
+    path: '/dev/ttyUSB1', // Passe den Pfad zum seriellen Port an
     baudRate: 115200
 }, (err) => {
     if (err) {
@@ -21,9 +21,9 @@ port.on('open', () => {
     console.log('Serial port is open');
 });     
 
-sendMessagetoESP("Hello ESP32!");
+sendMessagetoESP("ON");
 setTimeout(() => { 
-    sendMessagetoESP("Hello again, ESP32!");
+    sendMessagetoESP("OFF");
 }, 5000);
 
 function sendMessagetoESP(message) {        
