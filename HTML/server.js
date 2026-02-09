@@ -21,10 +21,7 @@ port.on('open', () => {
     console.log('Serial port is open');
 });     
 
-sendMessagetoESP("ON");
-setTimeout(() => { 
-    sendMessagetoESP("OFF");
-}, 5000);
+
 
 function sendMessagetoESP(message) {        
     port.write(message + "\n", (err) => {
@@ -36,13 +33,16 @@ function sendMessagetoESP(message) {
     });
 }    
 
+app.get('/api/sendusb', (req, res) => {
+    const message = req.query.message || "Hello ESP32!";
+    sendMessagetoESP(message);
+    res.json({ success: true, message: `Message "${message}" sent to ESP32` });
+});
 
 
 
 
-
-
-app.post('/api/save', (req, res)  =>  {
+app.post('/api/save', (req, res) => {
     //console.log(req.body);
     fs.writeFileSync('public/data.json', JSON.stringify(req.body, null, 2));
     res.sendStatus(200);
@@ -107,4 +107,6 @@ app.post("/api/submit-order", (req, res) => {
     }
 });
 
-app.listen(3000, () => {console.log("Server running on port 3000")});
+app.listen(3000, "0.0.0.0", () => {
+    console.log("Server läuft auf Port 3000");
+});
