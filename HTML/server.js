@@ -3,6 +3,8 @@ const fs = require("fs");
 const { SerialPort } = require('serialport');
 const app = express();
 
+console.log("Diese Datei ist die server.js");
+
 app.use(express.json());
 app.use(express.static('public'));
 

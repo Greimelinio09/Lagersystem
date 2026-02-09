@@ -1,11 +1,11 @@
 window.submittedOrders = window.submittedOrders || [];
 
-let testButton = false;
+let keineahnung = false;
 
 function testorder(){
-    testButton = !testButton;
-    console.log("Test Button State:", testButton);
-    if(testButton){
+    keineahnung = !keineahnung;
+    console.log("Test Button State:", keineahnung);
+    if(keineahnung){
         fetch("/api/sendusb?message=ON");
         
         
