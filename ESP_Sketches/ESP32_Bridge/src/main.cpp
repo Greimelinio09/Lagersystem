@@ -13,7 +13,8 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   delay(1000); // Wait for Serial to initialize
   String readedString = readString(0);
-  Serial.println("Read from EEPROM: " + readedString);
+  Serial.print("Read from EEPROM: ");
+  Serial.println(readedString);
 }
 
 void loop() {
