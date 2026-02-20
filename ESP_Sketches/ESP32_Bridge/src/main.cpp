@@ -6,6 +6,7 @@ const uint8_t output[] = {19,2,4,16,17};
 
 void examplesketch(String input);
 int getquantitynum(String input);
+int getnumofproducts(String input);
 void writeleds(int quantity);
 
 void setup() {
@@ -23,9 +24,9 @@ void loop() {
   if(Serial.available() > 0) {
      input = Serial.readStringUntil('\n');
   } 
-
+  int numofproducts = getnumofproducts(input);
   int quantity = getquantitynum(input);
-  writeleds(quantity);
+  writeleds(numofproducts);
   //examplesketch(input); 
    
 }
@@ -78,3 +79,14 @@ void writeleds(int quantity)
 
 
 }
+
+int getnumofproducts(String input)
+{
+  int counter = 0;
+  while(input.indexOf("quantity") != -1)
+    {
+      input.remove(input.indexOf("quantity"), 15);
+      counter++;
+    }
+  return counter;
+  }
