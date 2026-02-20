@@ -52,7 +52,8 @@ int getquantitynum(String input)
   int start = input.indexOf("quantity");
   if(start != -1)
     {
-      return input[start + 12];
+      Serial.println(input[start+11]);
+      return input[start + 11] - '0';
     }
   else
     {
@@ -64,7 +65,7 @@ void writeleds(int quantity)
 {
   for(int i = 0; i < 5; i++)
     {
-      if(quantity == i)
+      if(quantity == i+1)
         {
           digitalWrite(output[i],HIGH);
         }
