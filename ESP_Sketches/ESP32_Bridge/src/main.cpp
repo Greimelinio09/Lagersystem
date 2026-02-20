@@ -1,55 +1,79 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
-#include <EEPROM.h>
 
-#define LED_PIN 2
+const uint8_t output[] = {19,2,4,16,17};
 
-void writeString(String str, int address);
-String readString(int address);
 
+void examplesketch(String input);
+int getquantitynum(String input);
+void writeleds(int quantity);
 
 void setup() {
   Serial.begin(115200);
-  pinMode(LED_PIN, OUTPUT);
-  delay(1000); // Wait for Serial to initialize
-  String readedString = readString(0);
-  Serial.print("Read from EEPROM: ");
-  Serial.println(readedString);
+  for(int i = 0; i < sizeof(output); i++)
+    {
+      pinMode(output[i],OUTPUT);
+    }
 }
 
 void loop() {
+
+  static String input;
+
   if(Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n');
-    writeString(input, 0);
-  }
+     input = Serial.readStringUntil('\n');
+  } 
+
+  int quantity = getquantitynum(input);
+  writeleds(quantity);
+  //examplesketch(input); 
+   
+}
     
-  /*  
-    if(input == "OFF")
+
+
+
+void examplesketch(String input)
+{
+  if(input == "OFF")
       {
-        digitalWrite(LED_PIN, LOW);
+        digitalWrite(output[3], LOW);
       }
     else if(input == "ON")
       {
-        digitalWrite(LED_PIN, HIGH);
+        digitalWrite(output[3], HIGH);
       }
-  }
-   */ 
+
+
 }
 
-void writeString(String str, int address) {
-  for (size_t i = 0; i < str.length(); i++) {
-    EEPROM.write(address + i, str[i]);
-  }
-  EEPROM.write(address + str.length(), '\0'); // Null-terminate the string
-  EEPROM.commit(); // Ensure data is written to EEPROM
+int getquantitynum(String input)
+{
+  int start = input.indexOf("quantity");
+  if(start != -1)
+    {
+      return input[start + 12];
+    }
+  else
+    {
+      return 0;
+    }
 }
 
-String readString(int address) {
-  String result = "";
-  char ch;
-  while ((ch = EEPROM.read(address++)) != '\0') { // Read until null terminator
-    result += ch;
-  }
-  Serial.println(result);
-  return result;
+void writeleds(int quantity)
+{
+  for(int i = 0; i < 5; i++)
+    {
+      if(quantity == i)
+        {
+          digitalWrite(output[i],HIGH);
+        }
+      else
+        {
+          digitalWrite(output[i],LOW);
+        }
+    
+      }
+
+
 }

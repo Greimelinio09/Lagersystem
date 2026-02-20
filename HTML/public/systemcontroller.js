@@ -2,7 +2,7 @@ window.submittedOrders = window.submittedOrders || [];
 
 
 
-/*function testorder1(){
+function testorder(){
     console.log("testorder called");
     console.log(submittedOrders);
     fetch("/api/sendusb?message=" + JSON.stringify(submittedOrders))
@@ -17,18 +17,20 @@ window.submittedOrders = window.submittedOrders || [];
     
 
 }
-*/
+
 let leckmi = false;
-function testorder(){
-    leckmi = !leckmi;
+function testorder1(){
+   
     
     if(leckmi)
     {
         fetch("/api/sendusb?message=ON");
+        leckmi = false;
     }
     else
     {
         fetch("/api/sendusb?message=OFF");
+        leckmi = true;
     }
 
 
