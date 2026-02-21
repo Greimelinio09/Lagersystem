@@ -2,11 +2,14 @@
 #include <ArduinoJson.h>
 
 const uint8_t output[] = {19,2,4,16,17};
+ 
+char products[20];
 
 
 void examplesketch(String input);
 int getquantitynum(String input);
 int getnumofproducts(String input);
+char gettheproducts(String input, int numofproducts);
 void writeleds(int quantity);
 
 void setup() {
@@ -20,11 +23,15 @@ void setup() {
 void loop() {
 
   static String input;
+  
+
 
   if(Serial.available() > 0) {
      input = Serial.readStringUntil('\n');
-  } 
+  }
+  
   int numofproducts = getnumofproducts(input);
+  gettheproducts(input,numofproducts);
   int quantity = getquantitynum(input);
   writeleds(numofproducts);
   //examplesketch(input); 
@@ -89,4 +96,13 @@ int getnumofproducts(String input)
       counter++;
     }
   return counter;
-  }
+}
+
+char gettheproducts(String input, int numofproducts)
+{
+  while(input.indexOf("quantity") != -1)
+    {
+      
+    }
+      
+}

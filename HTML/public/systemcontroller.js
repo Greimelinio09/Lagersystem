@@ -2,7 +2,7 @@ window.submittedOrders = window.submittedOrders || [];
 
 
 
-function testorder(){
+function sendusb(){
     console.log("testorder called");
     console.log(submittedOrders);
     fetch("/api/sendusb?message=" + JSON.stringify(submittedOrders))

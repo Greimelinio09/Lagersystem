@@ -4,7 +4,7 @@
     "Value": "10k",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": -3,
+    "Pieces": 12,
     "shelf": "1",
     "box": "30"
   },
@@ -13,7 +13,7 @@
     "Value": "470uF",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "14",
+    "Pieces": "19",
     "shelf": "5",
     "box": "5"
   },
