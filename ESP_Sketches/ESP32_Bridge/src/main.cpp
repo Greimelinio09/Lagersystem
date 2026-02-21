@@ -9,7 +9,7 @@ String products[20];
 void examplesketch(String input);
 int getquantitynum(String input);
 int getnumofproducts(String input);
-char gettheproducts(String input, int numofproducts);
+void gettheproducts(String input, int numofproducts);
 void writeleds(int quantity);
 
 void setup() {
@@ -34,6 +34,8 @@ void loop() {
   gettheproducts(input,numofproducts);
   int quantity = getquantitynum(input);
   writeleds(numofproducts);
+  Serial.println(products[1]);
+  delay(500);
   //examplesketch(input); 
    
 }
@@ -98,14 +100,14 @@ int getnumofproducts(String input)
   return counter;
 }
 
-char gettheproducts(String input, int numofproducts)
+void gettheproducts(String input, int numofproducts)
 {
   uint i = 0;
 
   while(input.indexOf("quantity") != -1)
     {
       uint start = input.indexOf("product") - 2;
-      uint end = input.indexOf("quantity") + 14;
+      uint end = input.indexOf("quantity") + 15;
 
       products[i] = input.substring(start, end);
       input.remove(start, end - start);
