@@ -3,7 +3,7 @@
 
 const uint8_t output[] = {19,2,4,16,17};
  
-char products[20];
+String products[20];
 
 
 void examplesketch(String input);
@@ -100,9 +100,16 @@ int getnumofproducts(String input)
 
 char gettheproducts(String input, int numofproducts)
 {
+  uint i = 0;
+
   while(input.indexOf("quantity") != -1)
     {
-      
+      uint start = input.indexOf("product") - 2;
+      uint end = input.indexOf("quantity") + 14;
+
+      products[i] = input.substring(start, end);
+      input.remove(start, end - start);
+      i++;
     }
       
 }
