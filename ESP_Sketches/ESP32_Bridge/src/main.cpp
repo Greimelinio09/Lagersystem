@@ -34,8 +34,8 @@ void loop() {
   gettheproducts(input,numofproducts);
   int quantity = getquantitynum(input);
   writeleds(numofproducts);
-  Serial.println(products[1]);
-  delay(500);
+  Serial.println(products[4]);
+  
   //examplesketch(input); 
    
 }

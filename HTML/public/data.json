@@ -4,7 +4,7 @@
     "Value": "10k",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": 10,
+    "Pieces": 17,
     "shelf": "1",
     "box": "30"
   },
@@ -13,7 +13,7 @@
     "Value": "470uF",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "19",
+    "Pieces": "55",
     "shelf": "5",
     "box": "5"
   },
@@ -22,7 +22,7 @@
     "Value": "1N4007",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "50",
+    "Pieces": "55",
     "shelf": "2",
     "box": "20"
   },
@@ -31,7 +31,7 @@
     "Value": "Blue",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": "200",
+    "Pieces": "55",
     "shelf": "3",
     "box": "100"
   },
@@ -40,7 +40,7 @@
     "Value": "BC547",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "40",
+    "Pieces": "55",
     "shelf": "4",
     "box": "15"
   },
@@ -49,7 +49,7 @@
     "Value": "7805",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "30",
+    "Pieces": "55",
     "shelf": "6",
     "box": "10"
   },
@@ -58,7 +58,7 @@
     "Value": "SPDT",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "20",
+    "Pieces": "55",
     "shelf": "3",
     "box": "10"
   },
@@ -67,7 +67,7 @@
     "Value": "10k",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "15",
+    "Pieces": "55",
     "shelf": "4",
     "box": "5"
   },
@@ -76,7 +76,7 @@
     "Value": "5V",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "12",
+    "Pieces": "50",
     "shelf": "6",
     "box": "5"
   }
