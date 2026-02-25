@@ -83,6 +83,7 @@ Hardware control and automation will be added step by step.
 - Logic is centralized, hardware remains simple
 - Designed for local network operation
 - All the STL Files will be on Thingiverse or Printables after the project is finished
+- [Thingiverse](https://www.thingiverse.com/feligrei/designs) / [Printables](https://www.printables.com/@FelixGreimel_1735711/models)
 
 ---
 
