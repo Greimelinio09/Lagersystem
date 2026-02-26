@@ -1,11 +1,26 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <esp_now.h>
+#include <WiFi.h>
 
 const uint8_t output[] = {19,2,4,16,17};
- 
+
+uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6E, 0xB7, 0x78};
+
+typedef struct struct_message {
+    String prductinarray[20];
+    int productquantity[20];
+    int numofproduct[20];
+    int index;
+} struct_message;
+
+struct_message dataforRobot;
+esp_now_peer_info_t peerInfo;
+
 String products[20];
 
 
+void senddatatorobot(int numofproducts, int quantity);
 void examplesketch(String input);
 int getquantitynum(String input);
 int getnumofproducts(String input);
@@ -14,17 +29,33 @@ void writeleds(int quantity);
 
 void setup() {
   Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+  memcpy(peerInfo.peer_addr, broadcastAddress, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+  if (esp_now_add_peer(&peerInfo) != ESP_OK) {
+    Serial.println("Failed to add peer");
+    return;
+  }
+
   for(int i = 0; i < sizeof(output); i++)
     {
       pinMode(output[i],OUTPUT);
     }
+
+  
 }
 
 void loop() {
 
   static String input;
   
-
+  
+  delay(1000);
 
   if(Serial.available() > 0) {
      input = Serial.readStringUntil('\n');
@@ -35,6 +66,7 @@ void loop() {
   int quantity = getquantitynum(input);
   writeleds(numofproducts);
   Serial.println(products[4]);
+  senddatatorobot(numofproducts, quantity);
   
   //examplesketch(input); 
    
@@ -114,4 +146,13 @@ void gettheproducts(String input, int numofproducts)
       i++;
     }
       
+}
+
+void senddatatorobot(int numofproducts, int quantity)
+{
+  dataforRobot.prductinarray[0] = products[1];
+  dataforRobot.productquantity[0] = quantity;
+  dataforRobot.numofproduct[0] = numofproducts;
+  dataforRobot.index = 1;
+  esp_now_send(broadcastAddress, (uint8_t *) &dataforRobot, sizeof(dataforRobot));
 }
