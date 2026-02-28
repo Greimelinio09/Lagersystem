@@ -8,10 +8,10 @@ const uint8_t output[] = {19,2,4,16,17};
 uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6E, 0xB7, 0x78};
 
 typedef struct struct_message {
-    String prductinarray[20];
-    int productquantity[20];
-    int numofproduct[20];
-    int index;
+    /*int quantity[10];
+    int shelfnumber[10];
+    int boxnumber[10];*/
+    int numberofproducts;
 } struct_message;
 
 struct_message dataforRobot;
@@ -150,9 +150,6 @@ void gettheproducts(String input, int numofproducts)
 
 void senddatatorobot(int numofproducts, int quantity)
 {
-  dataforRobot.prductinarray[0] = products[1];
-  dataforRobot.productquantity[0] = quantity;
-  dataforRobot.numofproduct[0] = numofproducts;
-  dataforRobot.index = 1;
+  dataforRobot.numberofproducts = numofproducts;
   esp_now_send(broadcastAddress, (uint8_t *) &dataforRobot, sizeof(dataforRobot));
 }
