@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 const port = new SerialPort({
-    path: '/dev/ttyUSB0', // Passe den Pfad zum seriellen Port an
+    path: '/dev/ttyUSB1', // Passe den Pfad zum seriellen Port an
     baudRate: 115200
 }, (err) => {
     if (err) {
