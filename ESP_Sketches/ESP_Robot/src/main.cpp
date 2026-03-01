@@ -5,9 +5,9 @@
 uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6F, 0x28, 0xAC};
 
 typedef struct struct_message {
-    /*int quantity[10];
+    int quantity[10];
     int shelfnumber[10];
-    int boxnumber[10];*/
+    int boxnumber[10];
     int numberofproducts;
 } struct_message;
 
@@ -17,8 +17,23 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     memcpy(&dataforRobot, incomingData, sizeof(dataforRobot));
     Serial.print("Bytes received: ");
     Serial.println(len);
-    Serial.print("Number of products: ");
-    Serial.println(dataforRobot.numberofproducts);
+    Serial.print("Quantity: ");
+    for(int i = 0; i < dataforRobot.numberofproducts; i++)
+    {      Serial.print(dataforRobot.quantity[i]);
+      Serial.print(" ");  
+    }
+    Serial.println();
+    Serial.print("Shelfnumber: ");
+    for(int i = 0; i < dataforRobot.numberofproducts; i++)
+    {      Serial.print(dataforRobot.shelfnumber[i]);
+      Serial.print(" ");
+    }
+    Serial.println();
+    Serial.print("Boxnumber: ");
+    for(int i = 0; i < dataforRobot.numberofproducts; i++)
+    {      Serial.print(dataforRobot.boxnumber[i]);
+      Serial.print(" ");
+    }
 }
 
 void setup() {

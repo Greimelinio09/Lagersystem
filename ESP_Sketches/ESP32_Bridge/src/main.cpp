@@ -8,24 +8,31 @@ const uint8_t output[] = {19,2,4,16,17};
 uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6E, 0xB7, 0x78};
 
 typedef struct struct_message {
-    /*int quantity[10];
+    int quantity[10];
     int shelfnumber[10];
-    int boxnumber[10];*/
+    int boxnumber[10];
     int numberofproducts;
 } struct_message;
 
 struct_message dataforRobot;
 esp_now_peer_info_t peerInfo;
 
-String products[20];
+String products[10];
 
 
-void senddatatorobot(int numofproducts, int quantity);
+void senddatatorobot(int numofproducts, String input);
+
 void examplesketch(String input);
-int getquantitynum(String input);
-int getnumofproducts(String input);
 void gettheproducts(String input, int numofproducts);
 void writeleds(int quantity);
+
+int getnumofproducts(String input);
+int getquantitynum(int numofproducts);
+
+void getboxnumber(int numofproducts);
+void getshelfnumber(int numofproducts);
+
+
 
 void setup() {
   Serial.begin(115200);
@@ -53,20 +60,25 @@ void setup() {
 void loop() {
 
   static String input;
-  
+  static bool dataSent = false;
   
   delay(1000);
 
   if(Serial.available() > 0) {
      input = Serial.readStringUntil('\n');
-  }
+     dataSent = false;
+    }
   
   int numofproducts = getnumofproducts(input);
   gettheproducts(input,numofproducts);
-  int quantity = getquantitynum(input);
+  //int quantity = getquantitynum(input);
   writeleds(numofproducts);
-  Serial.println(products[4]);
-  senddatatorobot(numofproducts, quantity);
+  //Serial.println(products[4]);
+  if(dataSent == false)
+    {
+      senddatatorobot(numofproducts, input);
+      //dataSent = true;
+    }
   
   //examplesketch(input); 
    
@@ -89,18 +101,55 @@ void examplesketch(String input)
 
 }
 
-int getquantitynum(String input)
+int getquantitynum(int numofproducts)
 {
-  int start = input.indexOf("quantity");
-  if(start != -1)
+  for(int i = 0; i < numofproducts; i++)
     {
-      Serial.println(input[start+11]);
-      return input[start + 11] - '0';
-    }
-  else
+      int start = products[i].indexOf("quantity");
+      if(start != -1)
+      {
+      dataforRobot.quantity[i] = products[i].substring(start + 9, start + 11).toInt();
+      }
+      else
+      {
+        dataforRobot.quantity[i] = 0;
+      }
+      }
+  
+}
+
+void getboxnumber(int numofproducts)
+{
+  for(int i = 0; i < numofproducts; i++)
     {
-      return 0;
-    }
+      int start = products[i].indexOf("box");
+      if(start != -1)
+      {
+      dataforRobot.boxnumber[i] = products[i].substring(start + 7, start + 9).toInt();
+      }
+      else
+      {
+        dataforRobot.boxnumber[i] = 0;
+      }
+      }
+  
+}
+
+void getshelfnumber(int numofproducts)
+{
+  for(int i = 0; i < numofproducts; i++)
+    {
+      int start = products[i].indexOf("shelf");
+      if(start != -1)
+      {
+      dataforRobot.shelfnumber[i] = products[i].substring(start + 9, start + 10).toInt();
+      }
+      else
+      {
+        dataforRobot.shelfnumber[i] = 0;
+      }
+      }
+  
 }
 
 void writeleds(int quantity)
@@ -148,8 +197,11 @@ void gettheproducts(String input, int numofproducts)
       
 }
 
-void senddatatorobot(int numofproducts, int quantity)
+void senddatatorobot(int numofproducts, String input)
 {
   dataforRobot.numberofproducts = numofproducts;
+  getquantitynum(numofproducts);
+  getboxnumber(numofproducts);
+  getshelfnumber(numofproducts);
   esp_now_send(broadcastAddress, (uint8_t *) &dataforRobot, sizeof(dataforRobot));
 }
