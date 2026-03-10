@@ -5,7 +5,7 @@
 
 const uint8_t output[] = {19,2,4,16,17};
 
-uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6E, 0xB7, 0x78};
+uint8_t broadcastAddress[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
 
 typedef struct struct_message {
     int quantity[10];
@@ -115,7 +115,7 @@ int getquantitynum(int numofproducts)
         dataforRobot.quantity[i] = 0;
       }
       }
-  
+  return 0;
 }
 
 void getboxnumber(int numofproducts)

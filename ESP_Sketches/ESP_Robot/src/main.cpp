@@ -2,7 +2,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-uint8_t broadcastAddress[] = {0x28, 0x05, 0xA5, 0x6F, 0x28, 0xAC};
+uint8_t broadcastAddress[] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF};
 
 typedef struct struct_message {
     int quantity[10];
