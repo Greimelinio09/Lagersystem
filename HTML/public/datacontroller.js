@@ -150,6 +150,7 @@ function submitSelection(index, ordernumberElement) {
     
     currentOrderList.push({
         product: wholejson[index],   // Produkt aus wholejson basierend auf dem Index
+        productIndex: index,         // Sende den Index mit, damit der Server eindeutig weiß welches Produkt gemeint ist
         quantity: ordernumber       // Die Menge aus dem Eingabefeld
     });
     // Speichere orderList in localStorage für Persistierung

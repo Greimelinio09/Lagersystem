@@ -84,16 +84,21 @@ app.post("/api/submit-order", (req, res) => {
         
         // Für jeden bestellten Artikel die Menge reduzieren
         orderList.forEach(orderItem => {
-            const productName = orderItem.product.Name;
             const orderedQuantity = parseInt(orderItem.quantity);
-            
-            // Finde das Produkt in der data.json
-            const productIndex = data.findIndex(item => item.Name === productName);
-            
-            if(productIndex !== -1) {
-                // Reduziere die Pieces um die bestellte Menge
-                data[productIndex].Pieces -= orderedQuantity;
-                //console.log(`Produkt "${productName}" reduziert von ${data[productIndex].Pieces + orderedQuantity} auf ${data[productIndex].Pieces}`);
+
+            // Wenn der Client einen Index mitgeschickt hat, benutze ihn (eindeutig)
+            let productIndex = typeof orderItem.productIndex !== 'undefined' ? parseInt(orderItem.productIndex) : -1;
+
+            // Sonst versuche über den Namen zu matchen (Abwärtskompatibilität)
+            if(productIndex === -1 && orderItem.product && orderItem.product.Name) {
+                productIndex = data.findIndex(item => item.Name === orderItem.product.Name);
+            }
+
+            if(productIndex !== -1 && data[productIndex]) {
+                // Stelle sicher, dass Pieces eine Zahl ist
+                const currentPieces = parseInt(data[productIndex].Pieces) || 0;
+                const newPieces = currentPieces - orderedQuantity;
+                data[productIndex].Pieces = newPieces;
             }
         });
         

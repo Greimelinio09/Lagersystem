@@ -22,7 +22,7 @@
     "Value": "1N4007",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "55",
+    "Pieces": 5,
     "shelf": "2",
     "box": "20"
   },
