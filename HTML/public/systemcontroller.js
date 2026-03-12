@@ -18,19 +18,19 @@ function testorder(){
 
 }
 
-let leckmi = false;
+let testvariable = false;
 function testorder1(){
    
     
     if(leckmi)
     {
         fetch("/api/sendusb?message=ON");
-        leckmi = false;
+        testvariable = false;
     }
     else
     {
         fetch("/api/sendusb?message=OFF");
-        leckmi = true;
+        testvariable = true;
     }
 
 
