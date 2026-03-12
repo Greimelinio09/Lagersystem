@@ -4,7 +4,7 @@
     "Value": "10k",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": 45,
+    "Pieces": 33,
     "shelf": "1",
     "box": "30"
   },
@@ -13,7 +13,7 @@
     "Value": "470uF",
     "Name": "-",
     "Design": "THT",
-    "Pieces": "55",
+    "Pieces": 44,
     "shelf": "5",
     "box": "5"
   },
@@ -22,7 +22,7 @@
     "Value": "1N4007",
     "Name": "-",
     "Design": "THT",
-    "Pieces": 5,
+    "Pieces": 42,
     "shelf": "2",
     "box": "20"
   },
@@ -31,7 +31,7 @@
     "Value": "Blue",
     "Name": "-",
     "Design": "SMD",
-    "Pieces": "55",
+    "Pieces": 52,
     "shelf": "3",
     "box": "100"
   },

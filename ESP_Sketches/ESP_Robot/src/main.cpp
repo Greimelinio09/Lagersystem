@@ -15,24 +15,18 @@ struct_message dataforRobot;
 
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     memcpy(&dataforRobot, incomingData, sizeof(dataforRobot));
-    Serial.print("Bytes received: ");
-    Serial.println(len);
-    Serial.print("Quantity: ");
-    for(int i = 0; i < dataforRobot.numberofproducts; i++)
-    {      Serial.print(dataforRobot.quantity[i]);
-      Serial.print(" ");  
-    }
-    Serial.println();
-    Serial.print("Shelfnumber: ");
-    for(int i = 0; i < dataforRobot.numberofproducts; i++)
-    {      Serial.print(dataforRobot.shelfnumber[i]);
-      Serial.print(" ");
-    }
-    Serial.println();
-    Serial.print("Boxnumber: ");
-    for(int i = 0; i < dataforRobot.numberofproducts; i++)
-    {      Serial.print(dataforRobot.boxnumber[i]);
-      Serial.print(" ");
+    Serial.println("Data received from robot:");
+    Serial.print("Number of products: ");
+    Serial.println(dataforRobot.numberofproducts);
+    for (int i = 0; i < dataforRobot.numberofproducts; i++) {
+        Serial.print("Product ");
+        Serial.print(i + 1);
+        Serial.print(": Quantity = ");
+        Serial.print(dataforRobot.quantity[i]);
+        Serial.print(", Shelf Number = ");
+        Serial.print(dataforRobot.shelfnumber[i]);
+        Serial.print(", Box Number = ");
+        Serial.println(dataforRobot.boxnumber[i]);
     }
 }
 
